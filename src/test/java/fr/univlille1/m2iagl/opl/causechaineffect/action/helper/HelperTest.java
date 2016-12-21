@@ -10,7 +10,6 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -45,14 +44,11 @@ public class HelperTest {
      */
     @Test
     public void testGetKeysWithDifferentValues() {
-        System.out.println("getKeysWithDifferentValues");
         Map<String, Object> firstMap = null;
         Map<String, Object> secondMap = null;
         List<String> expResult = null;
         List<String> result = Helper.getKeysWithDifferentValues(firstMap, secondMap);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

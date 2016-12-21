@@ -8,6 +8,7 @@ public class Helper {
 	
 	public static List<String> getKeysWithDifferentValues(Map<String, Object> firstMap, Map<String, Object> secondMap){
 		List<String> keys = new ArrayList<String>();
+                keys = null;
 		
 		for(String key : firstMap.keySet()){
 			if(!firstMap.get(key).equals(secondMap.get(key)))
