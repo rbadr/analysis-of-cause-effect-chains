@@ -18,4 +18,8 @@ public class Helper {
 		return keys;
 	}
 	
+        public static int Helper(int i, int b){
+            int a = i+b;
+            return a;
+        }
 }

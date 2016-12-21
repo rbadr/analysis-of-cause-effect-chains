@@ -5,8 +5,6 @@
  */
 package fr.univlille1.m2iagl.opl.causechaineffect.action.helper;
 
-import java.util.List;
-import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -44,10 +42,10 @@ public class HelperTest {
      */
     @Test
     public void testGetKeysWithDifferentValues() {
-        Map<String, Object> firstMap = null;
-        Map<String, Object> secondMap = null;
-        List<String> expResult = null;
-        List<String> result = Helper.getKeysWithDifferentValues(firstMap, secondMap);
+        int a = 5;
+        int b = 4;
+        int expResult = 9;
+        int result = Helper.Helper(a, b);
         assertEquals(expResult, result);
     }
     
