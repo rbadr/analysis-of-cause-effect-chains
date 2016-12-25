@@ -6,8 +6,7 @@ public class Constants {
 	
 	public final static String PACKAGE_MAIN = "fr.univlille1.m2iagl.opl.causechaineffect.main";
 	public final static String PACKAGE_DEBUGGER = "fr.univlille1.m2iagl.opl.causechaineffect.action.ddebugger";
-	public final static String JDB_MAIN_RIGHT_INPUT = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBRightInputMain";
-	public final static String JDB_MAIN_WRONG_INPUT = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBWrongInputMain";
+	public final static String JDB_MAIN = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain";
 	
 	public static String SEPARATOR;
 	
@@ -17,8 +16,6 @@ public class Constants {
 	public final static String LOCAL_VARIABLES = "Local variables";
 	public final static String MAIN = "main";
 
-
-
 	public static void init(){
 		String os = System.getProperty("os.name").toLowerCase();
 		
@@ -26,8 +23,5 @@ public class Constants {
 			SEPARATOR = "\\";
 		else
 			SEPARATOR = "/";
-		
 	}
-	
-
 }

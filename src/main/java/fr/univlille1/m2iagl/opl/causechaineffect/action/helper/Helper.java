@@ -8,7 +8,6 @@ public class Helper {
 	
 	public static List<String> getKeysWithDifferentValues(Map<String, Object> firstMap, Map<String, Object> secondMap){
 		List<String> keys = new ArrayList<String>();
-                keys = null;
 		
 		for(String key : firstMap.keySet()){
 			if(!firstMap.get(key).equals(secondMap.get(key)))
@@ -18,8 +17,4 @@ public class Helper {
 		return keys;
 	}
 	
-        public static int Helper(int i, int b){
-            int a = i+b;
-            return a;
-        }
 }

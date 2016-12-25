@@ -1,5 +1,7 @@
 package fr.univlille1.m2iagl.opl.causechaineffect.jdb;
 
+import fr.univlille1.m2iagl.opl.causechaineffect.model.Breakpoint;
+import fr.univlille1.m2iagl.opl.causechaineffect.model.Constants;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -9,28 +11,29 @@ import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.univlille1.m2iagl.opl.causechaineffect.model.Breakpoint;
-import fr.univlille1.m2iagl.opl.causechaineffect.model.Constants;
-
 public class JDBHelper {
 
 	private String mainClass;
 	private Breakpoint breakpoint;
-
+	private int index;
+	
+	
 	private BufferedWriter writer;
 
 	private Map<String, Object> vars;
+	
 
-	public JDBHelper(String mainClass, Breakpoint breakpoint) {
+	public JDBHelper(String mainClass, Breakpoint breakpoint, int index) {
 		this.mainClass = mainClass;
 		this.breakpoint = breakpoint;
+		this.index = index;
 	}
 
 	public void launch() {
 		try {
 			ProcessBuilder builder = new ProcessBuilder("jdb");
 			// Set the working dir to the 'bin' dir
-			builder.directory(new File(System.getProperty("user.dir") + Constants.SEPARATOR + "bin"));
+			builder.directory(new File(System.getProperty("user.dir") + Constants.SEPARATOR + "target" + Constants.SEPARATOR + "classes"));
 			Process process = builder.start();
 			
 			OutputStream stdin = process.getOutputStream();
@@ -41,7 +44,7 @@ public class JDBHelper {
 			writeCommand("stop at " + breakpoint.toString());
 			getOutput(stdout);
 			
-			writeCommand("run " + mainClass);
+			writeCommand("run " + mainClass + " " + index);
 			getOutput(stdout);
 
 			writeCommand("locals");

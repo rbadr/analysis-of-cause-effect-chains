@@ -11,7 +11,7 @@ public class MyFirstChallenge<I> implements Challenge<I> {
 	}
 
 	public List getInputs() {
-		return Arrays.asList(new String[]{"test"});
+		return Arrays.asList(new String[]{"1", "azerty"});
 	}
 
 	public String getJavaProgram() {

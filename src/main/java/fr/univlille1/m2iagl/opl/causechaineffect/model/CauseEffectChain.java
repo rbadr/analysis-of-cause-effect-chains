@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import fr.univlille1.m2iagl.opl.causechaineffect.action.helper.ValueFormatter;
+
 public class CauseEffectChain {
 	
 	private List<List<String>> varNames;
@@ -28,12 +30,16 @@ public class CauseEffectChain {
 		for(int i=breakpointArray.length()-1;i>=0;i--){
 			s += "At " + breakpointArray.get(i).toString() + " : ";
 			
+			ValueFormatter formatter = new ValueFormatter();
+			
 			for(int j=0;j<varNames.get(i).size();j++){
 				String varName = varNames.get(i).get(j);
-				Object rightValue = rightValues.get(i).get(j);
-				Object wrongValue = wrongValues.get(i).get(j);
 				
-				s += varName + " was " + wrongValue +/* " - type is " + wrongValue.getClass().toString() +*/ "(" + rightValue +/* " - type is " + rightValue.getClass().toString() +*/ " - with a right input), ";
+				formatter.format(wrongValues.get(i).get(j));
+				s += varName + " was " + formatter.getValueToString() + " (" + formatter.getTypeName() + ")";
+				
+				formatter.format(rightValues.get(i).get(j));
+				s += " - " + formatter.getValueToString() + " (" + formatter.getTypeName() + ") with a right input,\n\t ";
 			}
 			s += "\n";
 		}
