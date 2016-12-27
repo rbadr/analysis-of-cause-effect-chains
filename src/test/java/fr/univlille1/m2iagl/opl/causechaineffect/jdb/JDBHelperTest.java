@@ -28,6 +28,21 @@ public class JDBHelperTest {
         
         assertEquals(expectedMainClass, mainClassResult);
     }
+    
+        @Test
+    public void testLaunchThrowsException() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
+        JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge"),0);
+        Constants.init();
+        jdbHelper.launch();
+        
+        Field mainClass = JDBHelper.class.getDeclaredField("mainClass");
+        mainClass.setAccessible(true);
+        
+        String mainClassResult = mainClass.get(jdbHelper).toString();
+        String expectedMainClass = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain";
+        
+        assertEquals(expectedMainClass, mainClassResult);
+    }
 
     /**
      * Test of getVars method, of class JDBHelper.

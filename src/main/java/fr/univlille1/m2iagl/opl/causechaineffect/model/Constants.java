@@ -8,7 +8,7 @@ public class Constants {
 	public final static String PACKAGE_DEBUGGER = "fr.univlille1.m2iagl.opl.causechaineffect.action.ddebugger";
 	public final static String JDB_MAIN = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain";
 	
-	public static String SEPARATOR;
+	public static String SEPARATOR = "/";
 	
 	public final static long MS_BETWEEN_COMMAND = 300;
 	
