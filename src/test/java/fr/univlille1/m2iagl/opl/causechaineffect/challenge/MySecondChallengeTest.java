@@ -1,13 +1,32 @@
 package fr.univlille1.m2iagl.opl.causechaineffect.challenge;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MySecondChallengeTest {
+	
+private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	
+	@Before
+	public void setUpStreams() {
+		System.setOut(null);
+		System.setOut(new PrintStream(outContent));
+	}
+	
+	@After
+	public void cleanUpStreams() {
+		System.setOut(null);
+	}
 
     /**
      * Test of getInputFormat method, of class MySecondChallenge.
@@ -60,7 +79,11 @@ public class MySecondChallengeTest {
     public void challengeThrowException() {
         MySecondChallenge mysecondChallenge = new MySecondChallenge();
         Set myset = new HashSet();
+        
         mysecondChallenge.challenge(myset);
+        String expResult = "exception", result = outContent.toString().trim();
+	    
+	    assertTrue(result.endsWith(expResult));
     }
 
     /**
