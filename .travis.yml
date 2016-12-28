@@ -2,7 +2,7 @@ language: java
 sudo: false
 script: mvn clean verify
 before_script:
-- chmod +x update-gh-pages.sh
+- chmod +x .utility/update-gh-pages.sh
 after_success:
 - mvn -DwithHistory=true org.pitest:pitest-maven:mutationCoverage
 - .utility/update-gh-pages.sh
