@@ -65,6 +65,7 @@
                         <param>fr.univlille1.m2iagl.opl.causechaineffect.model.*</param>
                         <param>fr.univlille1.m2iagl.opl.causechaineffect.main.*</param>
                     </targetClasses>
+                    <timestampedReports>false</timestampedReports>
                 </configuration>
             </plugin>
         </plugins>
