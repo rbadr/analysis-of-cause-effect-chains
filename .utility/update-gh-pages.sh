@@ -2,7 +2,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh-pages\n"
 
   #copy data we're interested in to other place
-  cp -R /target/pit-reports $HOME/target/pit-reports
+  cp -R /home/travis/build/rbadr/analysis-of-cause-effect-chains/target/pit-reports $HOME/mutationcoverage
 
   #go to home and setup git
   cd $HOME
@@ -14,7 +14,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
-  cp -Rf $HOME//target/pit-reports/* .
+  cp -Rf $HOME/mutationcoverage/* .
 
   #add, commit and push files
   git add -f .
