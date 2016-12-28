@@ -4,4 +4,3 @@ script: mvn clean verify
 after_success:
   - mvn clean test jacoco:report coveralls:report
   - mvn -DwithHistory=true org.pitest:pitest-maven:mutationCoverage
-  - bash <(curl -s https://codecov.io/bash)
