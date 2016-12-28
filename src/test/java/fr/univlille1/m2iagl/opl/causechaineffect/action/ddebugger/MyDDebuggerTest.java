@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge;
 import fr.univlille1.m2iagl.opl.causechaineffect.model.CauseEffectChain;
+import fr.univlille1.m2iagl.opl.causechaineffect.model.Constants;
 
 public class MyDDebuggerTest {
 	@Test
