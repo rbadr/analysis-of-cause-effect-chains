@@ -60,7 +60,6 @@
                     <targetClasses>
                         <param>fr.univlille1.m2iagl.opl.causechaineffect.action.ddebugger.*</param>
                         <param>fr.univlille1.m2iagl.opl.causechaineffect.action.helper.*</param>
-                        <param>fr.univlille1.m2iagl.opl.causechaineffect.challenge.*</param>
                         <param>fr.univlille1.m2iagl.opl.causechaineffect.jdb.*</param>
                         <param>fr.univlille1.m2iagl.opl.causechaineffect.model.*</param>
                         <param>fr.univlille1.m2iagl.opl.causechaineffect.main.*</param>
