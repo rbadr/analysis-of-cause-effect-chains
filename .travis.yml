@@ -1,11 +1,24 @@
 language: java
 sudo: false
-script: mvn clean verify
-before_script:
-- chmod +x .utility/update-gh-pages.sh
-after_success:
-- mvn -DwithHistory=true org.pitest:pitest-maven:mutationCoverage
-- .utility/update-gh-pages.sh
+install: true
 env:
   global:
     secure: dKsMQKxGi96SfbTUgFtnJgQMLfEWr6H6GhqkUjXZ+RitTj8zO8RFVb8O85Ovb03Sv+fSr6jq1Rz6s5nmMiXITSp2KuH95Cw5qf89kt8k64KsVMhipOnUosCj/IpljAS46qGFrVSH6uvAx8PiFzKRvg/FlpLgwLUCBbFhT/NBLeEwCYptjrCKJReaiK1T2bvAfk2u+Qob7uQg9nUPBj4pbreXji3K8YyqtTwcPsdaOzSDexbz47livG/q7sh7nFysE9lRIVVr++WuA/OMIGLopckyK+s2uqyLBO473cb9CHWcod13/ORYp2VevcP++D91Sg5KGz7uiyxVqTSHv5vHMUVg/EkBTpoQ3ecdeiSswUWqrkySPIIsaw5IT6FrpzrTuk9mY4jn2JcwSy4jkAlXt+qfwc4fYcWrPB0ORsmRermy9hXAMA6agZvDYqa7Qt4MrJa6J9oTi/TyD1o623TSOboKrKvgjn1WnbVzmr2dJCIFw1b3bWR85h7FT1SnqiePC8xD1GB6L2Rvk9oiPqfjRF9NDIVgM25RK9zXARQEXCAmhhjfT07rmYzidtOZY3/aqsy+ibbgoXdXTOyZ0/FQzQxADPbdbCT8YElYTo2b/P5Q+AFya8K01WW7I2d0HnTQlg6KHsxPh4CDd4aGhKgXc6kBVSUq1x46551PVPcaivw=
+addons:
+  sonarqube:
+    token:
+      secure: O8oqTXVMJzWZ+brVbXFbZPDLXwFhOuO4f9T4IEsJXc0hCy/v6hSqG0K5LiXvBUCmN/aprszvGOUfRpjSsdLJJRa9OmrbxyxQsrWBNbI19FqNV64wyaLzxY+3nZ8XoxoJ7PSOOZULLu/rDH/kLomow0uWxmNv0N60nW+Nf0oZxT05OknNkcH/VVexJlbIWj4kKbBhZb9Y19jTZFzjMEF2/FlBNAhrHq8ccRdddjvK+u1zpfWsv0EpbO1/iKSk8kL9l5MdNVEj4l+Z7AUOZFatRs03WUqXaL/z0JvDsHRvpwgNuBXOJKwWRtsswUVj2rGECiq+lm34pLZ8aCIchuyUGnQzpUEjGUF63yYN16x4Hq/PPJ7zx1Fn0VJPGwB39jjL7eGof/3DqXUxskyH8u2XSo1HUDlcwQM1a1L+1D0TyRd1096yr9yvt9Ps4QH2MX0l1hdTSPLZJoYSzRCZmzVci+CTNJ3cxR1JAXRr/de8EZLYTqiXEIaBG+GARXAVg0nIOEs/jV/6WP5MgK50pZgwGeI3xMOolIFAd4Ib39ryVSJgT0DU4j+FSiqlyuklVb7ghnZy8vpJ+FhkFHuA0il27fdC0BiXgzn2lvbBR9/71SCxEAEsou6BOafkfVTeFWY0r9Z51gM9N2DuqBlQwK3hzUeY++tZTuBQxIC/65erOyE=
+jdk:
+- oraclejdk8
+before_script:
+- chmod +x .utility/update-gh-pages.sh
+script:
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+  - "$HOME/.sonar/cache"
+after_success:
+- mvn -DwithHistory=true org.pitest:pitest-maven:mutationCoverage
+- .utility/update-gh-pages.sh
+  
