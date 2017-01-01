@@ -4,21 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MyFirstChallenge<I> implements Challenge<I> {
+public class MyFirstChallenge implements Challenge<String> {
 
-	public Class<? extends I> getInputFormat() {
-		return (Class<? extends I>) Integer.class;
+	@Override
+	public Class<? extends String> getInputFormat() {
+		return String.class;
 	}
 
-	public List getInputs() {
+	@Override
+	public List<String> getInputs() {
 		return Arrays.asList(new String[]{"1", "azerty"});
 	}
 
-	public String getJavaProgram() {
-		return "public Object doIt(String input){ return Integer.parseInt(input)}";
-	}
-
-	public void challenge(I input) {
+	@Override
+	public void challenge(String input) {
 		try {
 			System.out.println("Do it " + input);
 			doIt(input);
@@ -28,8 +27,8 @@ public class MyFirstChallenge<I> implements Challenge<I> {
 		}
 	}
 
-	public Object doIt(I input){
-		String inputToParse = (String) input;
-		return Integer.parseInt(inputToParse);
+	@Override
+	public Object doIt(String input){
+		return Integer.parseInt(input);
 	}
 }

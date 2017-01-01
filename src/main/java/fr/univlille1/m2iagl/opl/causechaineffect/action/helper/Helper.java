@@ -6,10 +6,11 @@ import java.util.Map;
 
 public class Helper {
 	
-	public static List<String> getKeysWithDifferentValues(Map<String, Object> firstMap, Map<String, Object> secondMap){
+	public static List<String> getKeysWithDifferentValues(Map<String, String> firstMap, Map<String, String> secondMap){
 		List<String> keys = new ArrayList<String>();
 		
 		for(String key : firstMap.keySet()){
+			
 			if(!firstMap.get(key).equals(secondMap.get(key)))
 				keys.add(key);
 		}

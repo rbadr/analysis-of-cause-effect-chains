@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class BreakpointTest {
     
-    Breakpoint instance = new Breakpoint(5,"testfilename");
+    Breakpoint instance = new Breakpoint(5,"testfilename",1);
 
     /**
      * Test of getLine method, of class Breakpoint.
@@ -34,6 +34,13 @@ public class BreakpointTest {
     public void toString_ValideFileNameAndLineNumber_ShouldReturnTestFileNameLineNumber() {
         String expResult = "testfilename:5";
         String result = instance.toString();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testGetNbr(){
+        int expResult = 1;
+        int result = instance.getNb();
         assertEquals(expResult, result);
     }
     

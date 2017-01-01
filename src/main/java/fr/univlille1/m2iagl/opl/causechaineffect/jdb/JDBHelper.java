@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class JDBHelper {
@@ -16,12 +18,14 @@ public class JDBHelper {
 	private String mainClass;
 	private Breakpoint breakpoint;
 	private int index;
-	
-	
-	private BufferedWriter writer;
 
-	private Map<String, Object> vars;
+	private BufferedWriter writer;
+	private InputStream stdout;
+
+	private Map<String, String> vars;
 	
+	private String[] varsToDump;
+
 
 	public JDBHelper(String mainClass, Breakpoint breakpoint, int index) {
 		this.mainClass = mainClass;
@@ -33,11 +37,11 @@ public class JDBHelper {
 		try {
 			ProcessBuilder builder = new ProcessBuilder("jdb");
 			// Set the working dir to the 'bin' dir
-			builder.directory(new File(System.getProperty("user.dir") + Constants.SEPARATOR + "target" + Constants.SEPARATOR + "classes"));
+			builder.directory(new File(Constants.FOLDER));
 			Process process = builder.start();
-			
+
 			OutputStream stdin = process.getOutputStream();
-			InputStream stdout = process.getInputStream();
+			stdout = process.getInputStream();
 
 			writer = new BufferedWriter(new OutputStreamWriter(stdin));
 
@@ -47,53 +51,93 @@ public class JDBHelper {
 			writeCommand("run " + mainClass + " " + index);
 			getOutput(stdout);
 
+			getToTheRightCall();
+
 			writeCommand("locals");
 			parseVars(stdout);
+			getVarsToDump();
 			
+			for(String varToDump: varsToDump){
+				writeCommand("dump " + varToDump);
+				parseDupedVars(stdout);
+			}
+
 			writeCommand("exit");
 			
 			process.destroy();
 
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			if(ex.getMessage() != null && ex.getMessage().equals(Constants.CANAL_MESSAGE)){
+				vars = null;
+			} else {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+	private void getToTheRightCall() throws Exception{
+		for(int i=1;i<breakpoint.getNb();i++){
+			writeCommand("cont");
+			getOutput(stdout);
 		}
 	}
 
 	private void writeCommand(String command) throws Exception {
+		// System.out.println(command);
 		writer.write(command + "\n");
 		writer.flush();
 		Thread.sleep(Constants.MS_BETWEEN_COMMAND);
-
 	}
-	
-	public Map<String, Object> getVars(){
+
+	public Map<String, String> getVars(){
 		return vars;
 	}
 
 	private void parseVars(InputStream outputStream) throws IOException {
-		this.vars = new HashMap<String, Object>();
-		
+		this.vars = new HashMap<String, String>();
+
 		String s = getOutput(outputStream);
-				
-		String[] line = s.split("\n");
 		
+		String[] line = s.split("\n");
+
 		if(line[0].contains(Constants.METHOD_ARGUMENTS)){
 			int i = 1;
 			while(!line[i].contains(Constants.LOCAL_VARIABLES)){
 				String[] tmp = line[i].split(" = ");
 				vars.put(tmp[0], tmp[1]);
-				
+
 				i++;
 			}
 			i++;
-			
+
 			while(!line[i].contains(Constants.MAIN)){
 				String[] tmp = line[i].split(" = ");
 				vars.put(tmp[0], tmp[1]);
-				
+
 				i++;
 			}
 		}
+	}
+	
+	private void parseDupedVars(InputStream outputStream) throws IOException{
+		String s = getOutput(outputStream);
+		
+		s = s.replaceAll("\n", "").replaceAll("main\\[1\\]", "");
+		
+		
+		String[] tmp = s.split(" = ");
+		
+		vars.put(tmp[0].replaceAll(" " , ""), tmp[1]);
+	}
+	
+	private void getVarsToDump(){
+		List<String> list = new ArrayList<String>();
+		for(String key : vars.keySet()){
+			if(vars.get(key).startsWith(Constants.INSTANCE_OF))
+				list.add(key);
+		}
+		
+		varsToDump = list.toArray(new String[list.size()]);
 	}
 
 	private String getOutput(InputStream outputStream) throws IOException {

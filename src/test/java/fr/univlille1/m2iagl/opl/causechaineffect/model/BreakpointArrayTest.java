@@ -13,11 +13,11 @@ public class BreakpointArrayTest {
     public void get_SecondeBreakpointInArray_ShouldReturnSecondTestFileName() {
         Breakpoint[] br;
         br = new Breakpoint[2];
-        br[0]= new Breakpoint(7,"firstTestFileName");
-        br[1]= new Breakpoint(4,"secondTestFileName");
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
         BreakpointArray breakPointArray = new BreakpointArray(br);
         int i = 1;
-        Breakpoint expResult = new Breakpoint(4,"secondTestFileName");
+        Breakpoint expResult = new Breakpoint(4,"secondTestFileName",2);
         Breakpoint result = breakPointArray.get(i);
         assertEquals(expResult.toString(), result.toString());
     }
@@ -26,8 +26,8 @@ public class BreakpointArrayTest {
     public void testArrayFieldValue() throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException{
         Breakpoint[] br;
         br = new Breakpoint[2];
-        br[0]= new Breakpoint(7,"firstTestFileName");
-        br[1]= new Breakpoint(4,"secondTestFileName");
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
         BreakpointArray breakPointArray = new BreakpointArray(br);
         
         Field field = BreakpointArray.class.getDeclaredField("array");
@@ -42,8 +42,8 @@ public class BreakpointArrayTest {
     public void getLineAt_BreakPointWithLineNumber7_ShouldReturn7() {
         Breakpoint[] br;
         br = new Breakpoint[2];
-        br[0]= new Breakpoint(7,"firstTestFileName");
-        br[1]= new Breakpoint(4,"secondTestFileName");
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
         BreakpointArray breakPointArray = new BreakpointArray(br);
         int i = 0;
         int expResult = 7;
@@ -58,8 +58,8 @@ public class BreakpointArrayTest {
     public void getFilenameAt_BreakpointWithFileNameFirstTest_ShoudReturnFirstTestFileName() {
         Breakpoint[] br;
         br = new Breakpoint[2];
-        br[0]= new Breakpoint(7,"firstTestFileName");
-        br[1]= new Breakpoint(4,"secondTestFileName");
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
         BreakpointArray breakPointArray = new BreakpointArray(br);
         int i = 0;
         String expResult = "firstTestFileName";
@@ -74,11 +74,11 @@ public class BreakpointArrayTest {
     public void toString_ValideFileNameAndLineNumber_ShouldReturnFileNameAndLineNumber() {
         Breakpoint[] br;
         br = new Breakpoint[2];
-        br[0]= new Breakpoint(7,"firstTestFileName");
-        br[1]= new Breakpoint(9,"secondTestFileName");
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
         BreakpointArray breakPointArray = new BreakpointArray(br);
         String result = breakPointArray.toString();
-        String expResult = "[firstTestFileName:7, secondTestFileName:9]";
+        String expResult = "[firstTestFileName:7, secondTestFileName:4]";
         
         assertEquals(expResult, result);
     }
@@ -90,8 +90,8 @@ public class BreakpointArrayTest {
     public void length_TwoBreakpoints_ShouldReturnTwo() {
         Breakpoint[] br;
         br = new Breakpoint[2];
-        br[0]= new Breakpoint(7,"firstTestFileName");
-        br[1]= new Breakpoint(4,"secondTestFileName");
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
         BreakpointArray breakPointArray = new BreakpointArray(br);
         int expResult = 2;
         int result = breakPointArray.length();

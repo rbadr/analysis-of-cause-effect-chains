@@ -16,9 +16,9 @@ public class CauseEffectChainTest {
     public void testToString() {
         Breakpoint[] br = new Breakpoint[0];
         BreakpointArray breakPointArray = new BreakpointArray(br);
-        CauseEffectChain causeEffectChain = new CauseEffectChain(breakPointArray);
+        CauseEffectChain causeEffectChain = new CauseEffectChain(breakPointArray,"exception");
         
-        String expResult = "Then, the app crashed !";
+        String expResult = "Then, the app crashed with a 'exception' !";
         String result = causeEffectChain.toString().trim();
         assertEquals(expResult, result);
     }
@@ -31,17 +31,17 @@ public class CauseEffectChainTest {
         int i = 0;
         List<String> keys = new ArrayList<String>();
         keys.add("test");
-        Map<String, Object> rightVarNamesAndValues = new HashMap<String, Object>();
+        Map<String, String> rightVarNamesAndValues = new HashMap<String, String>();
         rightVarNamesAndValues.put("a","test1");
-        Map<String, Object> wrongVarNamesAndValues = new HashMap<String, Object>();
+        Map<String, String> wrongVarNamesAndValues = new HashMap<String, String>();
         rightVarNamesAndValues.put("b","test2");
         
         Breakpoint[] br;
         br = new Breakpoint[2];
-        br[0]= new Breakpoint(7,"firstTestFileName");
-        br[1]= new Breakpoint(4,"secondTestFileName");
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
         BreakpointArray breakPointArray = new BreakpointArray(br);
-        CauseEffectChain causeEffectChain = new CauseEffectChain(breakPointArray);
+        CauseEffectChain causeEffectChain = new CauseEffectChain(breakPointArray,"exception");
         
         causeEffectChain.addEntries(i, keys, rightVarNamesAndValues, wrongVarNamesAndValues);
     }

@@ -1,7 +1,5 @@
 package fr.univlille1.m2iagl.opl.causechaineffect.action.helper;
 
-import java.util.Arrays;
-
 public class ValueFormatter {
 	
 	private String valueToString;

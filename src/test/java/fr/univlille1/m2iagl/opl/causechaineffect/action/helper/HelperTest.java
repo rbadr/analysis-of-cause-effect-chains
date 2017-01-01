@@ -15,8 +15,8 @@ public class HelperTest {
      */
     @Test
     public void getKeysWithDifferentValues_AllKeysWithSameValues_ShouldReturnEmptyList() {
-        Map<String, Object> firstMap = new HashMap<>();
-        Map<String, Object> secondMap = new HashMap<>();
+        Map<String, String> firstMap = new HashMap<>();
+        Map<String, String> secondMap = new HashMap<>();
         List<String> expResult = new ArrayList<String>();
         Helper newHelper = new Helper();
         
@@ -31,8 +31,8 @@ public class HelperTest {
     
     @Test
     public void getKeysWithDifferentValues_SomeKeysWithSameValues_ShouldReturnList() {
-        Map<String, Object> firstMap = new HashMap<>();
-        Map<String, Object> secondMap = new HashMap<>();
+        Map<String, String> firstMap = new HashMap<>();
+        Map<String, String> secondMap = new HashMap<>();
         List<String> expResult = new ArrayList<String>();
         Helper newHelper = new Helper();
         

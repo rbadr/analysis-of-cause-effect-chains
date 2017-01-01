@@ -10,49 +10,50 @@ import org.junit.Test;
 
 public class JDBHelperTest {
 
-    /**
-     * Test of launch method, of class JDBHelper.
-     */
     @Test
-    public void testLaunch() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
-        JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge"),0);
-        System.setProperty("os.name","linux");
-        Constants.init();
-        jdbHelper.launch();
+        public void testLaunch() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
+            JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge",2),0);
+            System.setProperty("os.name","linux");
+            Constants.init();
+            jdbHelper.launch();
+            
+            Field mainClass = JDBHelper.class.getDeclaredField("mainClass");
+            mainClass.setAccessible(true);
+            
+            String mainClassResult = mainClass.get(jdbHelper).toString();
+            String expectedMainClass = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain";
+            
+            assertEquals(expectedMainClass, mainClassResult);
+        }
         
-        Field mainClass = JDBHelper.class.getDeclaredField("mainClass");
-        mainClass.setAccessible(true);
-        
-        String mainClassResult = mainClass.get(jdbHelper).toString();
-        String expectedMainClass = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain";
-        
-        assertEquals(expectedMainClass, mainClassResult);
-    }
+            @Test
+        public void testLaunchThrowsException() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
+            JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge",1),0);
+            Constants.init();
+            jdbHelper.launch();
+            
+            Field mainClass = JDBHelper.class.getDeclaredField("mainClass");
+            mainClass.setAccessible(true);
+            
+            String mainClassResult = mainClass.get(jdbHelper).toString();
+            String expectedMainClass = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain";
+            
+            assertEquals(expectedMainClass, mainClassResult);
+        }
     
+        /**
+         * Test of getVars method, of class JDBHelper.
+         */
         @Test
-    public void testLaunchThrowsException() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
-        JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge"),0);
-        Constants.init();
-        jdbHelper.launch();
-        
-        Field mainClass = JDBHelper.class.getDeclaredField("mainClass");
-        mainClass.setAccessible(true);
-        
-        String mainClassResult = mainClass.get(jdbHelper).toString();
-        String expectedMainClass = "fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain";
-        
-        assertEquals(expectedMainClass, mainClassResult);
-    }
+        public void testGetVars() {
+            JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(5,"testfilename",1),0);
+            Map<String, String> expResult = null;
+            Map<String, String> result = jdbHelper.getVars();
+            assertEquals(expResult, result);
+        }
 
-    /**
-     * Test of getVars method, of class JDBHelper.
-     */
-    @Test
-    public void testGetVars() {
-        JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(5,"testfilename"),0);
-        Map<String, Object> expResult = null;
-        Map<String, Object> result = jdbHelper.getVars();
-        assertEquals(expResult, result);
-    }
     
 }
+
+
+
