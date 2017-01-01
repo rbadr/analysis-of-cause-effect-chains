@@ -54,7 +54,7 @@ public class MyFifthChallengeTest {
      */
     @Test
     public void testDoIt() {
-        String input = "thisisonlyatest";
+        String input = "asbsesu";
         MyFifthChallenge instance = new MyFifthChallenge();
         String expResult = "The most used character is s with 3 uses !";
         String result = instance.doIt(input);
@@ -65,7 +65,7 @@ public class MyFifthChallengeTest {
     public void testDoItNull() {
         String input = "";
         MyFifthChallenge instance = new MyFifthChallenge();
-        String expResult = "The most used character is A with 0 uses !";
+        String expResult = "The most used character is D with 0 uses !";
         String result = instance.doIt(input);
         assertEquals(expResult, result);
     }
