@@ -46,7 +46,7 @@ public class MyFourthChallenge implements Challenge<String>{
 	}
 
 	private boolean runTime(char d){
-		throw new RuntimeException("The input does not satisfy the given constraints");
+		throw new RuntimeException("The input does not satisfy the given constraints "+d);
 		
 	}
 }

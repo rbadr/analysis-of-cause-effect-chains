@@ -71,7 +71,8 @@ public class JDBHelper {
 		} catch (Exception ex) {
 			if(ex.getMessage() != null && ex.getMessage().equals(Constants.CANAL_MESSAGE)){
 				vars = null;
-				if(verbose){System.out.println("-----------------------------");}
+				if(verbose)
+                                {System.out.println("-----------------------------");}
 			} else {
 				ex.printStackTrace();
 			}
@@ -86,7 +87,8 @@ public class JDBHelper {
 	}
 
 	private void writeCommand(String command) throws Exception {
-		if(verbose){System.out.println(command);}
+		if(verbose)
+                {System.out.println(command);}
 		writer.write(command + "\n");
 		writer.flush();
 		Thread.sleep(Constants.MS_BETWEEN_COMMAND);
@@ -145,7 +147,8 @@ public class JDBHelper {
                 StringBuilder bld = new StringBuilder();
 		while (outputStream.available() > 0) {
 			bytesRead = outputStream.read(buffer);
-                        if (bytesRead > 0) { bld.append(new String(buffer, 0, bytesRead)).append("\n");}
+                        if (bytesRead > 0) 
+                        { bld.append(new String(buffer, 0, bytesRead)).append("\n");}
                 }
                 String str = bld.toString();
 		return str;

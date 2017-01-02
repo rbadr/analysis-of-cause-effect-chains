@@ -14,8 +14,10 @@ public class Main {
         boolean verbose = false;
         boolean allVars = false;
         for (String arg : args) {
-            if (("-v").equals(arg)) {verbose = true;} 
-            else if (("-a").equals(arg)) {allVars = true;}}
+            if (("-v").equals(arg)) 
+            {verbose = true;} 
+            else if (("-a").equals(arg)) 
+            {allVars = true;}}
         
         DDebugger<String> d = new MyDDebugger<>(verbose, allVars);
         System.out.println(d.debug(new MyFirstChallenge()));}
