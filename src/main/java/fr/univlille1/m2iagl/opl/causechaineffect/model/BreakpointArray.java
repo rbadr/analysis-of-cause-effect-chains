@@ -40,8 +40,7 @@ public class BreakpointArray {
                 bld.append(getFilenameAt(i)).append(":").append(getLineAt(i)).append(", ");
             }
             bld.append(getFilenameAt(array.length - 1)).append(":").append(getLineAt(array.length - 1)).append("]");
-            String str = bld.toString();
-            return str;
+            return bld.toString();
 	}
 	
 	public int length(){

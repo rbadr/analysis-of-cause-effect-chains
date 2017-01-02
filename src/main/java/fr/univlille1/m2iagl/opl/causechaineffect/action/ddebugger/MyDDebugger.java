@@ -14,13 +14,11 @@ import java.util.Map;
 
 public class MyDDebugger<I> implements DDebugger<I> {
 
-	private int rightInputIndex;
-        private int wrongInputIndex;
+	private int rightInputIndex, wrongInputIndex;
 	private BreakpointArray breakpointArray;
 	private String exceptionType;
 	
-	private boolean verbose;
-        private boolean allVars;
+	private boolean verbose, allVars;
 	
 	public MyDDebugger(boolean verbose, boolean allVars){
 		this.verbose = verbose;
@@ -28,7 +26,6 @@ public class MyDDebugger<I> implements DDebugger<I> {
 	}
 
 
-        @Override
 	public <I> CauseEffectChain debug(Challenge<I> challenge) {
 		computeRightAndWrongInput(challenge);
 
@@ -83,8 +80,7 @@ public class MyDDebugger<I> implements DDebugger<I> {
 			}
 		}
 		
-		if(verbose)
-			System.out.println("*************************************************");
+		if(verbose){System.out.println("*************************************************");}
 		return causeEffectChain;
 	}
 
@@ -109,7 +105,7 @@ public class MyDDebugger<I> implements DDebugger<I> {
 			StackTraceElement[] array =  e.getStackTrace();
 			exceptionType = e.getClass().toString() + " " + e.getMessage();
 
-			List<Breakpoint> breakpoints = new ArrayList<>();
+			List<Breakpoint> breakpoints = new ArrayList<Breakpoint>();
 			for(int i=array.length-1;i>=0;i--){
 				StackTraceElement stackTraceElement = array[i];
 				String className = stackTraceElement.getClassName();

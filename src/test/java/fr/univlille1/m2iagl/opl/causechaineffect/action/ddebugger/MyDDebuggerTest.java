@@ -10,10 +10,10 @@ public class MyDDebuggerTest {
     @Test
     public void testDebugChallenge() throws InterruptedException {
         MyDDebugger mdebugger = new MyDDebugger(true,false);
-	MyFirstChallenge MySecondChallenge = new MyFirstChallenge();
+	MyFirstChallenge MyFirstChallenge = new MyFirstChallenge();
 		
         String expResult = "At fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge:7 :";
-	CauseEffectChain result = mdebugger.debug(MySecondChallenge);
+	CauseEffectChain result = mdebugger.debug(MyFirstChallenge);
         
         assertTrue(result.toString().trim().startsWith(expResult));
     }

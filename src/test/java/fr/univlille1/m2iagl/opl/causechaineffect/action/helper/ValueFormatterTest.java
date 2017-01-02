@@ -1,5 +1,7 @@
 package fr.univlille1.m2iagl.opl.causechaineffect.action.helper;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -10,10 +12,9 @@ public class ValueFormatterTest {
      */
     @Test
     public void testFormat_Object() {
-        ValueFormatter valueFormater= new ValueFormatter();
         Object object = "azert\ny or \nqwerty";
         String expResult = "azerty or qwerty";
-        String result = valueFormater.format(object);
+        String result = ValueFormatter.format(object);
         assertEquals(expResult, result);
 
     }
@@ -88,6 +89,14 @@ public class ValueFormatterTest {
         String result = ValueFormatter.format(d);
         assertEquals(expResult, result);
 
+    }
+    
+    @Test(expected=InvocationTargetException.class)
+    public void getConstructorException() throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+        Constructor<ValueFormatter> constructor = ValueFormatter.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        ValueFormatter valueFormatter = constructor.newInstance();
+        System.out.println(valueFormatter);
     }
     
 }

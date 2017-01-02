@@ -48,8 +48,7 @@ public class CauseEffectChain {
                 bld.append("\n");
             }
             bld.append("Then, the app crashed with a ").append(exceptionType).append("\n");
-            String str = bld.toString();
-            return str;
+            return bld.toString();
         }
 
 	public void addEntries(int i, List<String> keys, Map<String, String> rightVarNamesAndValues, Map<String, String> wrongVarNamesAndValues) {
