@@ -8,7 +8,7 @@ public class RecursiveHelper {
 	Map<String, Integer> nbTimes;
 	
 	public RecursiveHelper(){
-		nbTimes = new HashMap<String, Integer>();
+		nbTimes = new HashMap<>();
 	}
 	
 	public int get(String s){
@@ -18,7 +18,6 @@ public class RecursiveHelper {
 			nbTimes.put(s, nbTimes.get(s) + 1);
 		}
 		
-		return nbTimes.get(s);
-		
+		return nbTimes.get(s);	
 	}
 }

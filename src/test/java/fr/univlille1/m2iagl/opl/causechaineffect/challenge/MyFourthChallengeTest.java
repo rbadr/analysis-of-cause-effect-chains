@@ -31,7 +31,7 @@ public class MyFourthChallengeTest {
     @Test
     public void testGetInputFormat() {
         MyFourthChallenge MyFourthChallenge = new MyFourthChallenge();
-        Class expResult = (Class<? extends String>) String.class;
+        Class expResult = String.class;
         Class result = MyFourthChallenge.getInputFormat();
         assertEquals(expResult, result);
     }
@@ -66,9 +66,11 @@ public class MyFourthChallengeTest {
      */
     @Test(expected=RuntimeException.class)
     public void testDoItRuntimeException() {
-        String input = "Azorty";
+        String input = "aaa";
         MyFourthChallenge instance = new MyFourthChallenge();
-        instance.doIt(input);
+        String expResult = "Wrong";
+        String result = instance.doIt(input);
+        assertEquals(expResult, result);
     }
     
     /**

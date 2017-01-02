@@ -7,7 +7,7 @@ public class MyFourthChallenge implements Challenge<String>{
 
 	@Override
 	public Class<? extends String> getInputFormat() {
-		return (Class<? extends String>) String.class;
+		return String.class;
 	}
 
 	@Override
@@ -30,25 +30,23 @@ public class MyFourthChallenge implements Challenge<String>{
 	}
 	
 	private String checkString(int length, char c, char d){
-		if(A(length) && (B(c) || C(d))){
+		if(lenghtSuperiorToTwo(length) && (charEqualE(c) || runTime(d))){
 			return "OK";
 		} else {
-			throw new RuntimeException("The input does not satisfy the given constraints");
+			return "Wrong";
 		}
 	}
 	
-	private boolean A(int length){
+	private boolean lenghtSuperiorToTwo(int length){
 		return length > 2;
 	}
 	
-	private boolean B(char c){
+	private boolean charEqualE(char c){
 		return c == 'e';
 	}
 
-	private boolean C(char d){
-		return Character.isLowerCase(d);
+	private boolean runTime(char d){
+		throw new RuntimeException("The input does not satisfy the given constraints");
 		
 	}
-	
-
 }

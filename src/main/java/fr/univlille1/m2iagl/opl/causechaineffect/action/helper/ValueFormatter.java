@@ -1,50 +1,33 @@
 package fr.univlille1.m2iagl.opl.causechaineffect.action.helper;
 
 public class ValueFormatter {
-	
-	private String valueToString;
-	private String typeName;
-	
-	public void format(Object value){
-		valueToString = value.toString().replaceAll("[\n|\r]*", "");
-		typeName = value.getClass().getName();
+
+	public static String format(Object object){
+		
+		return object.toString().replaceAll("\n", "").replaceAll("\\v", "");
 	}
-	
-	public void format(char value){
-		valueToString = value + "";
-		typeName = "char";
+
+	public static String format(char c){
+		return Character.toString(c);
 	}
-	
-	public void format(short value){
-		valueToString = value + "";
-		typeName = "short";
+
+	public static String format(short s){
+		return Short.toString(s);
 	}
-	
-	public void format(int value){
-		valueToString = value + "";
-		typeName = "int";
+
+	public static String format(int i){
+		return Integer.toString(i);
 	}
-	
-	public void format(long value){
-		valueToString = value + "";
-		typeName = "long";
+
+	public static String format(long l){
+		return Long.toString(l);
 	}
-	
-	public void format(float value){
-		valueToString = value + "";
-		typeName = "float";
+
+	public static String format(float f){
+		return Float.toString(f);
 	}
-	
-	public void format(double value){
-		valueToString = value + "";
-		typeName = "double";
-	}
-	
-	public String getValueToString(){
-		return valueToString;
-	}
-	
-	public String getTypeName(){
-		return typeName;
+
+	public static String format(double d){
+		return Double.toString(d);
 	}
 }

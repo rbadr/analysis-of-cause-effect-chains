@@ -9,7 +9,7 @@ public class MyDDebuggerTest {
 	
     @Test
     public void testDebugChallenge() throws InterruptedException {
-        MyDDebugger mdebugger = new MyDDebugger();
+        MyDDebugger mdebugger = new MyDDebugger(true,false);
 	MyFirstChallenge MySecondChallenge = new MyFirstChallenge();
 		
         String expResult = "At fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge:7 :";

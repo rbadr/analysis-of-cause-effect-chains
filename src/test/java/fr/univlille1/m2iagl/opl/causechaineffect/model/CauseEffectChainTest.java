@@ -18,7 +18,7 @@ public class CauseEffectChainTest {
         BreakpointArray breakPointArray = new BreakpointArray(br);
         CauseEffectChain causeEffectChain = new CauseEffectChain(breakPointArray,"exception");
         
-        String expResult = "Then, the app crashed with a 'exception' !";
+        String expResult = "Then, the app crashed with a exception";
         String result = causeEffectChain.toString().trim();
         assertEquals(expResult, result);
     }

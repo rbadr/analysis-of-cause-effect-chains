@@ -97,5 +97,24 @@ public class BreakpointArrayTest {
         int result = breakPointArray.length();
         assertEquals(expResult, result);
     }
+
+        /**
+     * Test of remove method, of class BreakpointArray.
+     */
+    @Test
+    public void testRemove() {
+        int i = 3;
+        Breakpoint[] br;
+        br = new Breakpoint[5];
+        br[0]= new Breakpoint(7,"firstTestFileName",1);
+        br[1]= new Breakpoint(4,"secondTestFileName",2);
+        br[2]= new Breakpoint(6,"thirdTestFileName",3);
+        br[3]= new Breakpoint(9,"fourthTestFileName",4);
+        br[4]= new Breakpoint(3,"fifthTestFileName",5);
+        BreakpointArray breakPointArray = new BreakpointArray(br);
+        breakPointArray.remove(i);
+        assertEquals(4,breakPointArray.array.length);
+        assertEquals(br[4],breakPointArray.array[3]);
+    }
     
 }

@@ -4,23 +4,17 @@ import java.util.List;
 
 /**
  * Defines a challenge asked to the others
- * @param <I>
  */
 public interface Challenge<I> {
-	/** Gives the actual value of I
-     * @return  */
+	/** Gives the actual value of I */
 	public Class<? extends I> getInputFormat();
 
-	/** Gives a list of inputs
-     * @return  */
+	/** Gives a list of inputs */
 	public List<I> getInputs();
 
-	/** perform the computation, without any assert
-     * @param input
-     * @return  */
+	/** perform the computation, without any assert */
 	public Object doIt(I input);
 
-	/** the core challenge
-     * @param input */
+	/** the core challenge */
 	public void challenge(I input);
 }

@@ -12,7 +12,7 @@ public class JDBHelperTest {
 
     @Test
         public void testLaunch() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
-            JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge",2),0);
+            JDBHelper jdbHelper = new JDBHelper(true,"fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge",2),0);
             System.setProperty("os.name","linux");
             Constants.init();
             jdbHelper.launch();
@@ -28,7 +28,7 @@ public class JDBHelperTest {
         
             @Test
         public void testLaunchThrowsException() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
-            JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge",1),0);
+            JDBHelper jdbHelper = new JDBHelper(true,"fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(33,"fr.univlille1.m2iagl.opl.causechaineffect.challenge.MyFirstChallenge",1),0);
             Constants.init();
             jdbHelper.launch();
             
@@ -46,7 +46,7 @@ public class JDBHelperTest {
          */
         @Test
         public void testGetVars() {
-            JDBHelper jdbHelper = new JDBHelper("fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(5,"testfilename",1),0);
+            JDBHelper jdbHelper = new JDBHelper(true,"fr.univlille1.m2iagl.opl.causechaineffect.main.LaunchJDBMain",new Breakpoint(5,"testfilename",1),0);
             Map<String, String> expResult = null;
             Map<String, String> result = jdbHelper.getVars();
             assertEquals(expResult, result);

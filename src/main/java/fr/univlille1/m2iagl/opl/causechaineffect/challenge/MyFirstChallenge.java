@@ -23,7 +23,6 @@ public class MyFirstChallenge implements Challenge<String> {
 			doIt(input);
 		} catch (Exception e) {
 			System.out.println("exception");
-			//e.printStackTrace();
 		}
 	}
 

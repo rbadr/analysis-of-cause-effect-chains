@@ -54,7 +54,7 @@ public class MyFifthChallengeTest {
      */
     @Test
     public void testDoIt() {
-        String input = "asbsesu";
+        String input = "thisisonlyatest";
         MyFifthChallenge instance = new MyFifthChallenge();
         String expResult = "The most used character is s with 3 uses !";
         String result = instance.doIt(input);

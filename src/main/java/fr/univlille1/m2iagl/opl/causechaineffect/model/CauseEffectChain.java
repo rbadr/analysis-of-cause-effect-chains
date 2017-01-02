@@ -18,66 +18,56 @@ public class CauseEffectChain {
 	public CauseEffectChain(BreakpointArray breakpointArray, String exceptionType){
 		this.breakpointArray = breakpointArray;
 
-		varNames = new ArrayList<List<String>>();
-		rightValues = new ArrayList<List<Object>>();
-		wrongValues = new ArrayList<List<Object>>();
+		varNames = new ArrayList<>();
+		rightValues = new ArrayList<>();
+		wrongValues = new ArrayList<>();
 
 		this.exceptionType = exceptionType;
 	}
 
 	@Override
 	public String toString(){
-
-		String s = "";
-
-		for(int i=0;i<breakpointArray.length();i++){
-			s += "At " + breakpointArray.get(i).toString() + " : ";
-
-			ValueFormatter formatter = new ValueFormatter();
-			
-			if(varNames.get(i).isEmpty()){
-				s += "No variables values differences";
-			}
-
-			for(int j=0;j<varNames.get(i).size();j++){
-				String varName = varNames.get(i).get(j);
-
-				formatter.format(wrongValues.get(i).get(j));
-				s += varName + " was " + formatter.getValueToString() + " - ";
-
-				if(rightValues.get(i).get(j) != null){
-					formatter.format(rightValues.get(i).get(j));
-					s += formatter.getValueToString() + " with a right input,";
-				} else {
-					s += "With the right input(s), the program did not reach that point,";
-				}
-				
-				s+= "\n\t";
-			}
-			s += "\n";
-		}
-
-		s += "Then, the app crashed with a '" + exceptionType + "' !\n";
-
-		return s;
-	}
+            StringBuilder bld = new StringBuilder();
+            for(int i=0;i<breakpointArray.length();i++){
+                bld.append("At ").append(breakpointArray.get(i).toString()).append(" : \n\t");
+                if(varNames.get(i).isEmpty()){
+                    bld.append("No variables values differences");
+                }
+                
+                for(int j=0;j<varNames.get(i).size();j++){
+                    String varName = varNames.get(i).get(j);
+                    bld.append(varName).append(" was ").append(ValueFormatter.format(wrongValues.get(i).get(j))).append(" - ");
+                    if(rightValues.get(i).get(j) != null){
+                        bld.append(ValueFormatter.format(rightValues.get(i).get(j))).append(" with a right input,");
+                    } 
+                    else {
+                        bld.append("With the right input(s), the program did not reach that point,");
+                    }
+                    bld.append("\n\t");
+                }
+                bld.append("\n");
+            }
+            bld.append("Then, the app crashed with a ").append(exceptionType).append("\n");
+            String str = bld.toString();
+            return str;
+        }
 
 	public void addEntries(int i, List<String> keys, Map<String, String> rightVarNamesAndValues, Map<String, String> wrongVarNamesAndValues) {
-		varNames.add(i, new ArrayList<String>(keys));
+		varNames.add(i, new ArrayList<>(keys));
 
-		List<Object> rightValues = new ArrayList<Object>();
-		List<Object> wrongValues = new ArrayList<Object>();
+		List<Object> rValues = new ArrayList<>();
+		List<Object> wValues = new ArrayList<>();
 
 		for(String key : keys){
 			if(rightVarNamesAndValues != null){
-				rightValues.add(rightVarNamesAndValues.get(key));
+				rValues.add(rightVarNamesAndValues.get(key));
 			} else {
-				rightValues.add(null);
+				rValues.add(null);
 			}
-			wrongValues.add(wrongVarNamesAndValues.get(key));
+			wValues.add(wrongVarNamesAndValues.get(key));
 		}
 
-		this.rightValues.add(i, rightValues);
-		this.wrongValues.add(i, wrongValues);
+		this.rightValues.add(i, rValues);
+		this.wrongValues.add(i, wValues);
 	}
 }

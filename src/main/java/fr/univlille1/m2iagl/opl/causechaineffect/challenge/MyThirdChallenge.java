@@ -21,21 +21,18 @@ public class MyThirdChallenge implements Challenge<String[]> {
 			doIt(input);
 		} catch (Exception e) {
 			System.out.println("exception");
-			//e.printStackTrace();
 		}
 	}
 	
 	@Override
 	public Object doIt(String[] input){
-		return recursive(0, input);
+		return recursive(0, input[0], input[1].charAt(0));
 	}
 	
-	private String recursive(int i, String[] input){
-		String word = input[0];
-		char c = input[1].charAt(0);
+	private String recursive(int i, String word, char c){
 
 		if(word.charAt(i) == c)
 			return "Char " + c + " can be found in " + word + " at " + i;		
-		return recursive(i+1, input);
+		return recursive(i+1, word, c);
 	}
 }
